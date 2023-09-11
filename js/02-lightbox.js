@@ -22,19 +22,14 @@ const galleryEl = document.querySelector('.gallery')
     .join("");
     }
 
-// console.dir(createMarkup(galleryItems))
 galleryEl.insertAdjacentHTML("beforeend", createMarkup(galleryItems))
-// console.log(galleryEl);
+
 galleryEl.addEventListener("click", onClick)
 
 function onClick(evt) {
 evt.preventDefault()
-  if (evt.target === evt.currentTarget) {
-    return;
-  }
-  // console.log(evt.target);
 }
-// var lightbox = new SimpleLightbox('.gallery a', { /* options */ });
+
 const lightbox = new SimpleLightbox('.gallery a', {
   captionsData: 'alt',
   captionPosition: 'top',

@@ -28,24 +28,26 @@ galleryEl.addEventListener("click", onClick);
 
 function onClick(evt) {
   evt.preventDefault()
-  if (evt.target === evt.currentTarget) {
-    return;
-  } 
-  // console.log(evt.target);
+  // if (evt.target === evt.currentTarget) {
+  //   return
+  // }
+  if (evt.target.nodeName !== 'IMG') {
+    return
+  }
+  
   const instance = basicLightbox.create(`
     <img src="${evt.target.dataset.source}" width='800' height='600' /> 
-  `);
+  `,
+    {
+      onShow: (instance) => window.addEventListener('keydown', escapeImage),
+      onClose: (instance) => window.removeEventListener('keydown', escapeImage)
+    }
+  );
   instance.show();
 
-  const escapeImage = galleryEl.addEventListener("keydown", evt => {
+  function escapeImage(evt) {
     if (evt.code === 'Escape') {
       instance.close()
     }
-  });
-  // galleryEl.removeEventListener("keydown", evt => {
-  //   instance.close()
-  // });
-}
-
-
-  
+  }
+} 
