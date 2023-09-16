@@ -24,12 +24,6 @@ const galleryEl = document.querySelector('.gallery')
 
 galleryEl.insertAdjacentHTML("beforeend", createMarkup(galleryItems))
 
-galleryEl.addEventListener("click", onClick)
-
-function onClick(evt) {
-evt.preventDefault()
-}
-
 const lightbox = new SimpleLightbox('.gallery a', {
   captionsData: 'alt',
   captionPosition: 'top',
